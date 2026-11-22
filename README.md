@@ -1,104 +1,94 @@
 <div align="center">
 
-<!-- CLEAN OPEN-SOURCE HERO BANNER -->
-<img src="https://vercel.app" width="100%" />
+# 🕸️ Spidey PDF Tool
 
-<br/>
+**Fast, in-memory PDF merger and splitter built with Python & Streamlit.**
 
-<!-- STATUS & TECH BADGES -->
-<a href="https://python.org">
+<p>
   <img src="https://shields.io" alt="Python" />
-</a>
-<a href="https://streamlit.io">
   <img src="https://shields.io" alt="Streamlit" />
-</a>
-<a href="https://pypi.org">
   <img src="https://shields.io" alt="PyPDF" />
-</a>
-<a href="https://github.com">
-  <img src="https://shields.io" alt="License" />
-</a>
-<a href="https://github.com">
-  <img src="https://shields.io" alt="Repo Size" />
-</a>
+  <img src="https://shields.io" alt="Stars" />
+</p>
+
+[Features](#-features) • [Architecture](#-how-it-works) • [Quick Start](#-quick-start) • [Roadmap](#-roadmap)
 
 </div>
 
 ---
 
-## Overview
+## 📌 Overview
 
-**Spidey PDF Tool** is a lightweight, privacy-focused web utility built with **Python**, **Streamlit**, and **PyPDF**. It allows users to merge multiple PDF documents or extract specific page ranges entirely in memory—meaning zero files are saved to disk or uploaded to third-party servers.
+Most online PDF tools are slow, filled with ads, or upload private files to unknown servers. **Spidey PDF Tool** solves this by processing PDFs directly inside your system's RAM (`io.BytesIO`)—keeping everything fast, local, and private, wrapped in a Spider-Man multiverse interface.
 
 ---
 
-## Key Features
+## ⚡ Features
 
-| Mode | Core Functionality | Description |
+| Agent Mode | Action | What It Does |
 | :--- | :--- | :--- |
-| **Tobey Mode** | **PDF Merger** | Combines multiple uploaded PDF files into a single document in user-selected order. |
-| **Andrew Mode** | **Page Range Splitter** | Extracts a custom page range (`start_page` to `end_page`) with built-in boundary validation. |
-| **Tom Mode** | **Session Reset** | Clears active memory state and resets the workspace for a clean session. |
+| 🍕 **Tobey Mode** | **Merge PDFs** | Combines multiple uploaded PDF files into a single clean document in seconds. |
+| ⚡ **Andrew Mode** | **Split PDF** | Extracts a specific page range (`start` to `end`) with built-in input validation. |
+| 🕷️ **Tom Mode** | **Session Reset** | Clears active memory state and resets the workspace with a single click. |
 
 ---
 
-## Architecture & Data Flow
+## 🧠 How It Works
 
-```text
-[User Uploads PDF(s)] 
-        │
-        ▼
-[Streamlit FileUploader (RAM)]
-        │
-        ├──► Merge Mode ──► pypdf.PdfWriter.append() ──┐
-        │                                              ├──► [io.BytesIO Buffer] ──► [Instant Download]
-        └──► Split Mode ──► pypdf.PdfWriter.add_page() ┘
+```mermaid
+flowchart LR
+    A[Upload PDF Files] --> B{Select Mode}
+    B -->|Tobey Mode| C[Append Pages in RAM]
+    B -->|Andrew Mode| D[Slice Page Range in RAM]
+    C --> E[io.BytesIO Memory Buffer]
+    D --> E
+    E --> F[Instant Browser Download]
 ```
 
-* **Zero Disk I/O:** Uses `io.BytesIO()` buffers to process files directly in RAM for speed and privacy.
-* **Input Validation:** Prevents out-of-range page slicing before processing begins.
+* **Zero Disk Storage:** No temporary files are written to your hard drive.
+* **Safe Page Slicing:** Automatically validates page numbers so out-of-range inputs never crash the app.
 
 ---
 
-## Project Structure
+## 🚀 Quick Start
+
+```bash
+# 1. Clone the repository
+git clone https://github.com
+cd spidey-pdf-tool
+
+# 2. Install required packages
+pip install streamlit pypdf
+
+# 3. Start the application
+streamlit run main.py
+```
+
+<details>
+<summary><b>📂 Click to view Project Structure</b></summary>
 
 ```text
 spidey-pdf-tool/
-├── yoo.py              # Main Streamlit application
-├── requirements.txt    # Python dependencies
-└── README.md           # Project documentation
+├── main.py          # Core Streamlit UI & PyPDF logic
+└── README.md        # Project documentation
 ```
+</details>
 
 ---
 
-## Quick Start
+## 🗺️ Roadmap
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com.git
-cd spidey-pdf-tool
-```
-
-### 2. Install Dependencies
-```bash
-pip install streamlit pypdf
-```
-
-### 3. Run the Application
-```bash
-streamlit run yoo.py
-```
+- [ ] Add PDF compression to reduce large file sizes
+- [ ] Support custom page reordering before merging
+- [ ] Add password encryption for sensitive PDFs
+- [ ] Deploy live web demo on Streamlit Community Cloud
 
 ---
 
-## Roadmap
+<div align="center">
 
-- [ ] Add PDF compression support to reduce large file sizes
-- [ ] Add drag-and-drop page reordering before merging
-- [ ] Add password protection / encryption option for exported PDFs
+**"With great power comes great responsibility."**
 
----
+Built by **[Sufyan-m](https://github.com)**
 
-## Author
-
-**Sufyan** — [@Sufyan-m](https://github.com)
+</div>
