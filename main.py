@@ -4,6 +4,17 @@ import io
 
 st.set_page_config(page_title="Spidey PDF Tool", page_icon="🕸️", layout="centered")
 
+# Load 'Lora' Serif Font from Google Fonts
+st.markdown("""
+    <style>
+    @import url('https://googleapis.com');
+
+    html, body, [class*="css"], h1, h2, h3, p, button, input, label {
+        font-family: 'Lora', Georgia, serif !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 st.title("🕸️ Spidey PDF Tool")
 st.caption("Simple PDF merger and splitter — built with Python & Streamlit")
 
